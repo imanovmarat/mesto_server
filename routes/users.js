@@ -1,12 +1,8 @@
 const router = require('express').Router();
-const readFile = require('../utils/read-file');
-const path = require('path');
-const dataPath = path.join(__dirname, '..', 'data', 'users.json');
+const { getUsers, getUser } = require('../controllers/users');
 
-readFile(dataPath);
+router.get('/users', getUsers);
 
-router.get('/users', ((req, res) => {
-  res.send('проверка users');
-}))
+router.get('/users/:id', getUser);
 
 module.exports = router;
